@@ -1,0 +1,23 @@
+create table Users(
+      id uuid not null primary key ,
+      name text not null ,
+      emaiil text not null unique,
+      password text not null ,
+      role text not null
+  );
+
+
+create table Punch_Clock(
+                            id uuid not null primary key ,
+                            user_id uuid not null references Users(id) on delete cascade ,
+                            type text not null ,
+                            timestamp timestamp
+);
+
+create table Settings(
+                         id uuid primary key not null ,
+                         hours_worked decimal(5,2) not null ,
+                         overtime_worked decimal(5,2) not null,
+                         name text not null,
+                         date DATE not null
+);
