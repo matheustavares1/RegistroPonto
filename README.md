@@ -7,9 +7,11 @@ O **RegistroPonto** é uma aplicação desenvolvida em Java utilizando o framewo
 
 - Java
 - Spring Boot
-- Banco de Dados (especifique qual está utilizando, por exemplo, MySQL, PostgreSQL)
-- Docker (se aplicável)
-- Maven (para gerenciamento de dependências)
+- POstgreSQL
+- Docker 
+- Maven
+- Token JWT
+- Postman
 
 ## Funcionalidades:
 - Registro de Usuários: Registra usuários de acordo com
