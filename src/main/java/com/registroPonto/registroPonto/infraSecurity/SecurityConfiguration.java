@@ -30,12 +30,9 @@ public class SecurityConfiguration {
         return http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers(HttpMethod.POST, "/user/auth/register").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/user/auth/register").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/user/auth/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/check/employee/").hasRole("EMPLOYEE")
                                 .requestMatchers(HttpMethod.GET, "check/employee/punch-clock/history").hasRole("EMPLOYEE")
@@ -43,7 +40,9 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.GET, "admin/reports").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
-
+                .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)
+               // .formLogin(Customizer.withDefaults())
+                //.httpBasic(Customizer.withDefaults())
                 .build();
     }
 
